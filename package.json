@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "next": "^11.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "name": "markdown-frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@types/react": "^17.0.13",
+    "typescript": "^4.3.5"
+  },
+  "scripts": {
+    "dev": "next dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mehul2410/markdown-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mehul2410/markdown-frontend/issues"
+  },
+  "homepage": "https://github.com/Mehul2410/markdown-frontend#readme",
+  "description": ""
+}
