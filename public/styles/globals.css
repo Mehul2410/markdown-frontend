@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Andika&display=swap");
+
+.viewSwitch-0-2-5 {
+  display: flex;
+  margin-top: -1px;
+  margin-left: unset !important;
+}
+
+h1 {
+  font-size: 28px;
+}
