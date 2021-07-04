@@ -2,8 +2,9 @@ import React from "react";
 import BaseLayout from "../components/layout/BaseLayout";
 import BasePage from "../components/BasePage";
 import ReactMarkdown from "react-markdown";
-import Yamde from "yamde";
 import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
+import Markdown from "../components/markdown/Markdown";
 
 const index = () => {
   const [isLightMode, setIsLightMode] = React.useState(true);
@@ -21,24 +22,26 @@ const index = () => {
         >
           {`${isLightMode ? "Dark" : "Light"} Mode`}
         </div>
-
-        <Yamde
-          value={text}
-          handler={setText}
-          theme={isLightMode ? "light" : "dark"}
-        />
-        <ReactMarkdown>{text}</ReactMarkdown>
+        <Markdown text={text} setText={setText} isLightMode={isLightMode} />
+        <ReactMarkdown className="prose">{text}</ReactMarkdown>
       </BasePage>
     </BaseLayout>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  let a;
+  // extract the token from the server size ctx
+  const { jwt } = parseCookies(ctx);
+  //if there's no login token then redirect to login page
+  if (!jwt) {
+    const { res } = ctx;
+    res.writeHead(302, {
+      Location: "/login",
+    });
+    res.end();
+  }
   return {
-    props: {
-      a,
-    },
+    props: {},
   };
 };
 

@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "@tailwindcss/forms": "^0.3.3",
+    "@tailwindcss/typography": "^0.4.1",
+    "cors": "^2.8.5",
     "next": "^11.0.1",
     "nookies": "^2.5.2",
     "react": "^17.0.2",

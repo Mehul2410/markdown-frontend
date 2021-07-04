@@ -4,12 +4,29 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Andika&display=swap");
 
+@layer base {
+  [type="text"],
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  [multiple],
+  textarea,
+  select {
+    border-radius: theme("borderRadius.md");
+    background-color: theme("colors.gray.50");
+  }
+}
+
 .viewSwitch-0-2-5 {
   display: flex;
   margin-top: -1px;
   margin-left: unset !important;
-}
-
-h1 {
-  font-size: 28px;
 }
