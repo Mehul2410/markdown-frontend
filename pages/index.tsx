@@ -1,12 +1,12 @@
 import React from "react";
 import BaseLayout from "../components/layout/BaseLayout";
 import BasePage from "../components/BasePage";
-import ReactMarkdown from "react-markdown";
+import Cards from "../components/markdown/Cards";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 import Markdown from "../components/markdown/Markdown";
 
-const index = () => {
+const index = ({ user }) => {
   const [isLightMode, setIsLightMode] = React.useState(true);
   const [text, setText] = React.useState("exampleContent");
   return (
@@ -23,15 +23,24 @@ const index = () => {
           {`${isLightMode ? "Dark" : "Light"} Mode`}
         </div>
         <Markdown text={text} setText={setText} isLightMode={isLightMode} />
-        <ReactMarkdown className="prose">{text}</ReactMarkdown>
+        <Cards />
       </BasePage>
     </BaseLayout>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  // extract the token from the server size ctx
   const { jwt } = parseCookies(ctx);
+
+  const user = await fetch("http://localhost:1337/profiles/me", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  });
+  const userResponse = await user.json();
+  // extract the token from the server size ctx
+
   //if there's no login token then redirect to login page
   if (!jwt) {
     const { res } = ctx;
@@ -41,7 +50,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     res.end();
   }
   return {
-    props: {},
+    props: {
+      user: userResponse,
+    },
   };
 };
 

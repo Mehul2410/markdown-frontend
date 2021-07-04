@@ -25,8 +25,17 @@
   }
 }
 
-.viewSwitch-0-2-5 {
+.viewSwitch-0-2-5,
+.viewSwitch-0-2-15 {
   display: flex;
   margin-top: -1px;
   margin-left: unset !important;
+}
+.contentArea-0-2-18 > textarea,
+.contentArea-0-2-8 > textarea {
+  width: 100% !important;
+}
+.viewButton-0-2-16,
+.viewButton-0-2-6 {
+  width: 74px !important;
 }
