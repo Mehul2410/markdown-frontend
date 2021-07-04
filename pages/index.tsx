@@ -6,7 +6,16 @@ import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 import Markdown from "../components/markdown/Markdown";
 
-const index = ({ user }) => {
+const index = ({ user, notes }) => {
+  console.log(notes);
+  console.log(user);
+  if (notes == user[0].user.email) {
+    console.log("hey");
+  }
+
+  // console.log(
+  //   notes[0].share.filter((item) => item.includes(user[0].user.email))
+  // );
   const [isLightMode, setIsLightMode] = React.useState(true);
   const [text, setText] = React.useState("exampleContent");
   return (
@@ -38,8 +47,34 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       Authorization: `Bearer ${jwt}`,
     },
   });
+
   const userResponse = await user.json();
+
   // extract the token from the server size ctx
+  const notes = await fetch("http://localhost:1337/notes", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  });
+  const notesResponse = await notes.json();
+
+  // if (notesResponse[0].share[0] === userResponse[0].user.email) {
+  //   m = notesResponse;
+  // } else {
+  //   m = null;
+  // }
+  const m = notesResponse[0].share.filter(
+    (item) => item == userResponse[0].user.email
+  );
+  let authenticateduser;
+  if (m == userResponse[0].user.email) {
+    authenticateduser = notesResponse;
+  } else {
+    authenticateduser = null;
+  }
+  // let myNotes;
+  // if(notesResponse[0].)
 
   //if there's no login token then redirect to login page
   if (!jwt) {
@@ -52,6 +87,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       user: userResponse,
+      notes: authenticateduser,
     },
   };
 };
