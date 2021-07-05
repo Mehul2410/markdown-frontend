@@ -3,7 +3,7 @@ import Header from "../shared/Header";
 
 const BaseLayout = ({ children }) => {
   return (
-    <div className="bg-primary">
+    <div className="bg-primary dark:bg-newBlack h-screen overflow-y-scroll scrollbar-hide">
       <Header />
       {children}
     </div>

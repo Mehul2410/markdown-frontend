@@ -3,8 +3,24 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   mode: "jit",
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
+    screens: {
+      "2xl": { max: "1535px" },
+      // => @media (max-width: 1535px) { ... }
+
+      xl: { max: "1279px" },
+      // => @media (max-width: 1279px) { ... }
+
+      lg: { max: "1023px" },
+      // => @media (max-width: 1023px) { ... }
+
+      md: { max: "767px" },
+      // => @media (max-width: 767px) { ... }
+
+      sm: { max: "639px" },
+      // => @media (max-width: 639px) { ... }
+    },
     extend: {
       fontSize: {
         xs: "0.75rem",
@@ -27,6 +43,8 @@ module.exports = {
         red: colors.red,
         yellow: colors.amber,
         blue: colors.blue,
+        newBlack: "#2c3d4c",
+        nightBlue: "#FFFFFF",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
@@ -36,12 +54,15 @@ module.exports = {
         none: "none",
       },
       backgroundColor: (theme) => ({
-        primary: "#6366F1",
+        primary: "#4e6a83",
         secondary: "#FFFFFF",
         border: "#C5BFBF",
         danger: "#e3342f",
         custom1: "#6063FF",
         custom2: "#040844",
+        cardUpdate: "#F4F6FD",
+        card: "#d5d5d5",
+        nightBlack: "#0A1931",
       }),
 
       dropShadow: {

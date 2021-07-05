@@ -41,8 +41,8 @@ const SignIn = ({ signup }) => {
   };
 
   return (
-    <div className="w-5/6 h-5/6 bg-custom1 rounded-lg m-auto drop-shadow-x grid grid-cols-2 ">
-      <div className="h-full rounded-l-lg bg-gray-100 flex justify-center items-center">
+    <div className="w-5/6 h-5/6 bg-custom1 rounded-lg m-auto drop-shadow-x grid grid-cols-2 md:grid-cols-1 md:w-full md:h-full">
+      <div className="h-full rounded-l-lg bg-gray-100 flex justify-center items-center md:hidden">
         <svg
           className="object-contain w-10/12"
           width="600"
@@ -643,43 +643,49 @@ const SignIn = ({ signup }) => {
           />
         </svg>
       </div>
-      <div className="space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-custom1">
+      <div className=" relative space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-card  md:rounded-lg md:p-6">
         <h2 className="font-sans text-4xl text-gray-900 font-extrabold uppercase ">
           Sign In
         </h2>
-        <p className="font-sans text-xl text-gray-300">
+        <p className="flex flex-wrap justify-center text-center font-sans text-xl text-gray-800">
           New here Create an Account?
           <span
-            className="text-black cursor-pointer underline"
+            className="text-black cursor-pointer underline ml-3 "
             onClick={signup}
           >
             Sign up
           </span>
         </p>
         <form
-          className="space-y-3 flex justify-center flex-col items-center"
+          className="space-y-3 flex justify-center flex-col items-start "
           onSubmit={(e) => SignInForm(e)}
         >
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
             name="email"
-            placeholder="email"
+            id="email"
+            className="w-full"
+            placeholder="Email"
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             name="password"
-            placeholder="password"
+            id="password"
+            className="w-full"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <p className="text-yellow-300 animate-bounce">{error}</p>
+          <p className="text-red-800 animate-pulse">{error}</p>
           <input
-            className="w-full px-4 py-2 rounded-md bg-custom2 text-white"
+            className="w-full px-4 py-2 rounded-md bg-custom2 text-white cursor-pointer"
             type="submit"
             value="Sign in"
             onClick={(e) => SignInForm(e)}
