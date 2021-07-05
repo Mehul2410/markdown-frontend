@@ -41,7 +41,7 @@ const SignIn = ({ signup }) => {
   };
 
   return (
-    <div className="w-5/6 h-5/6 bg-custom1 rounded-lg m-auto drop-shadow-x grid grid-cols-2 md:grid-cols-1 ">
+    <div className="w-5/6 h-5/6 bg-custom1 rounded-lg m-auto drop-shadow-x grid grid-cols-2 md:grid-cols-1 md:w-full md:h-full">
       <div className="h-full rounded-l-lg bg-gray-100 flex justify-center items-center md:hidden">
         <svg
           className="object-contain w-10/12"
@@ -643,11 +643,11 @@ const SignIn = ({ signup }) => {
           />
         </svg>
       </div>
-      <div className=" relative space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-card md:bg-gray-50 md:rounded-lg">
+      <div className=" relative space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-card md:bg-gray-50 md:rounded-lg md:p-6">
         <h2 className="font-sans text-4xl text-gray-900 font-extrabold uppercase ">
           Sign In
         </h2>
-        <p className="flex flex-wrap justify-center font-sans text-xl text-gray-300 md:text-gray-800">
+        <p className="flex flex-wrap justify-center text-center font-sans text-xl text-gray-800">
           New here Create an Account?
           <span
             className="text-black cursor-pointer underline ml-3 "

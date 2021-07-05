@@ -53,11 +53,8 @@ const Dailog = ({ card, note, id }) => {
       </div>
       {isOpen ? (
         <div className="flex top-0 left-0 right-0 justify-center items-center w-full h-full fixed z-10 backdrop-blur-sm">
-          <div
-            className="relative prose m-auto bg-white
-        p-5 rounded-lg"
-          >
-            <span className="space-x-5 absolute -bottom-4 origin-center translate-x-8	right-1/2 h-30 w-15 px-5 py-3 flex justify-center items-center text-white  rounded-lg md:-top-10 bg-newBlack dark:bg-blac">
+          <div className="relative prose m-auto bg-white p-5 rounded-lg w-10/12">
+            <span className="space-x-5 absolute -bottom-5 origin-center translate-x-8	right-1/2 h-30 w-15 px-5 py-3 flex justify-center items-center text-white  rounded-lg bg-newBlack ">
               <button
                 type="button"
                 onClick={() => {

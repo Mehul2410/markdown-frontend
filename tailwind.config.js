@@ -43,7 +43,7 @@ module.exports = {
         red: colors.red,
         yellow: colors.amber,
         blue: colors.blue,
-        newBlack: "#132C33",
+        newBlack: "#2c3d4c",
         nightBlue: "#FFFFFF",
       },
       fontFamily: {
