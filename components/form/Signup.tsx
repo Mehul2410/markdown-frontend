@@ -45,7 +45,7 @@ const Signup = ({ signIn }) => {
         setError("Something went wrong try sign up again");
       }
     } catch (err) {
-      console.log(err);
+      setError("Username or Email is already taken");
     }
   };
 
@@ -378,7 +378,7 @@ const Signup = ({ signIn }) => {
           />
         </svg>
       </div>
-      <div className="space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-card md:rounded-lg md:bg-gray-100 md:p-6">
+      <div className="space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-card md:rounded-lg  md:p-6">
         <h2 className="font-sans text-4xl text-gray-900 font-extrabold uppercase text-center">
           Sign up for Free
         </h2>
@@ -392,33 +392,46 @@ const Signup = ({ signIn }) => {
           </span>
         </p>
         <form
-          className="space-y-3 flex justify-center flex-col items-center px-5"
+          className="space-y-3 flex justify-center flex-col items-start px-5"
           onSubmit={(e) => SignUpForm(e)}
         >
+          <label htmlFor="Username">Username:</label>
           <input
             type="text"
             name="username"
-            placeholder="username"
+            id="username"
+            className="w-full"
+            placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
           />
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
             name="email"
-            placeholder="email"
+            id="email"
+            className="w-full"
+            placeholder="Email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             name="password"
-            placeholder="password"
+            id="password"
+            className="w-full"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          <p className="text-yellow-300 animate-bounce">{error}</p>
+          <p className="text-red-800 animate-pulse">{error}</p>
           <input
-            className="w-full px-4 py-2 rounded-md bg-custom2 text-white"
+            className="w-full px-4 py-2 rounded-md bg-custom2 text-white cursor-pointer"
             type="submit"
             value="Sign up"
           />

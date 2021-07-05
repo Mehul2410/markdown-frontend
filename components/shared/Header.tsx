@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import { parseCookies } from "nookies";
+import { parseCookies, destroyCookie } from "nookies";
 import { useRouter } from "next/router";
 
 const Header = () => {
   const router = useRouter();
-  const { token } = parseCookies();
+  const { jwt } = parseCookies();
   let user: Boolean = false;
-  if (token) {
+  if (jwt) {
     user = true;
   } else {
     user = false;
@@ -17,6 +17,10 @@ const Header = () => {
     if (route == router.pathname) {
       return "active";
     } else "";
+  }
+
+  function logout() {
+    destroyCookie(null, "jwt");
   }
 
   return (
@@ -29,9 +33,9 @@ const Header = () => {
         </a>
       </Link>
       {user ? (
-        <Link href="/logout">
-          <a className={isActive("/logout")}>
-            <span className="py-3 px-5 bg-border rounded-lg font-semibold cursor-pointer ">
+        <Link href="/">
+          <a className={isActive("/")} onClick={logout}>
+            <span className="py-3 px-5 bg-secondary rounded-lg font-semibold cursor-pointer">
               logout
             </span>
           </a>
@@ -39,14 +43,12 @@ const Header = () => {
       ) : (
         <Link href="/login">
           <a className={isActive("/login")}>
-            <span className="py-3 px-5 bg-secondary rounded-lg font-semibold cursor-pointer   ">
+            <span className="py-3 px-5 bg-secondary rounded-lg font-semibold cursor-pointer">
               Login / Signup
             </span>
           </a>
         </Link>
       )}
-
-      {/* <span className="py-3 px-5 bg-secondary rounded-lg ">👋 Mehul</span> */}
     </div>
   );
 };

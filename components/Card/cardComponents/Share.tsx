@@ -4,19 +4,20 @@ import { parseCookies } from "nookies";
 
 const Share = ({ share, id }) => {
   const { jwt } = parseCookies();
-  const [sharedUser, setSharedUser] = React.useState();
+  const [sharedUser, setSharedUser] = React.useState<string>();
 
   async function shareNote(e) {
     e.preventDefault();
     let shareArray = [];
-    share.forEach((element) => {
-      if (!element === sharedUser) {
-        console.log("try again");
-      } else {
-        shareArray.push(element, sharedUser);
-        setSharedUser("");
-      }
+    share.forEach((element: string) => {
+      // if (element !== sharedUser) {
+      //   console.log("try again");
+      // } else {
+      shareArray.push(element, sharedUser);
+      setSharedUser("");
+      // }
     });
+    console.log(shareArray);
     const SharedUser = {
       share: shareArray,
     };

@@ -643,7 +643,7 @@ const SignIn = ({ signup }) => {
           />
         </svg>
       </div>
-      <div className=" relative space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-card md:bg-gray-50 md:rounded-lg md:p-6">
+      <div className=" relative space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-card  md:rounded-lg md:p-6">
         <h2 className="font-sans text-4xl text-gray-900 font-extrabold uppercase ">
           Sign In
         </h2>
@@ -657,29 +657,35 @@ const SignIn = ({ signup }) => {
           </span>
         </p>
         <form
-          className="space-y-3 flex justify-center flex-col items-center "
+          className="space-y-3 flex justify-center flex-col items-start "
           onSubmit={(e) => SignInForm(e)}
         >
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
             name="email"
-            placeholder="email"
+            id="email"
+            className="w-full"
+            placeholder="Email"
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             name="password"
-            placeholder="password"
+            id="password"
+            className="w-full"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <p className="text-yellow-300 animate-bounce">{error}</p>
+          <p className="text-red-800 animate-pulse">{error}</p>
           <input
-            className="w-full px-4 py-2 rounded-md bg-custom2 text-white"
+            className="w-full px-4 py-2 rounded-md bg-custom2 text-white cursor-pointer"
             type="submit"
             value="Sign in"
             onClick={(e) => SignInForm(e)}

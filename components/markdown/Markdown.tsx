@@ -33,7 +33,7 @@ const Markdown = ({ text, setText, userEmail }) => {
          bg-white dark:bg-nightBlue
         p-5 rounded-lg mt-4 "
     >
-      <span
+      <button
         className="absolute -bottom-5 right-1/2 h-20 w-20 p-2 flex justify-center items-center translate-x-8 rounded-full md:-top-10 cursor-pointer bg-newBlack dark:bg-black "
         onClick={submitNote}
       >
@@ -51,7 +51,7 @@ const Markdown = ({ text, setText, userEmail }) => {
             d="M12 6v6m0 0v6m0-6h6m-6 0H6"
           />
         </svg>
-      </span>
+      </button>
       <Yamde value={text} handler={setText} />
     </div>
   );

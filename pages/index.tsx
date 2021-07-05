@@ -1,7 +1,7 @@
 import React from "react";
 import BaseLayout from "../components/layout/BaseLayout";
 import BasePage from "../components/BasePage";
-import Cards from "../components/markdown/Cards";
+import Cards from "../components/Card/Cards";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 import Markdown from "../components/markdown/Markdown";
