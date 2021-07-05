@@ -5,6 +5,7 @@ import Cards from "../components/markdown/Cards";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 import Markdown from "../components/markdown/Markdown";
+import Toggle from "../context/Toggle";
 
 const index = ({ user, notes }) => {
   const [isLightMode, setIsLightMode] = React.useState(true);
@@ -12,22 +13,8 @@ const index = ({ user, notes }) => {
   return (
     <BaseLayout>
       <BasePage>
-        <div
-          style={{
-            color: "blue",
-            textDecoration: "underline",
-            cursor: "pointer",
-          }}
-          onClick={() => setIsLightMode(!isLightMode)}
-        >
-          {`${isLightMode ? "Dark" : "Light"} Mode`}
-        </div>
-        <Markdown
-          text={text}
-          setText={setText}
-          isLightMode={isLightMode}
-          userEmail={user}
-        />
+        <Toggle />
+        <Markdown text={text} setText={setText} userEmail={user} />
         <Cards note={notes} />
       </BasePage>
     </BaseLayout>

@@ -45,12 +45,13 @@ const Share = ({ share, id }) => {
       </Disclosure.Button>
       <Disclosure.Panel
         as="form"
-        className="text-gray-500"
+        className="text-gray-500 w-full"
         onSubmit={(e) => {
           shareNote(e);
         }}
       >
         <input
+          className="w-full"
           type="email"
           placeholder="enter username"
           value={sharedUser}

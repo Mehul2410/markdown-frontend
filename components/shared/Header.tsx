@@ -20,10 +20,10 @@ const Header = () => {
   }
 
   return (
-    <div className="z-10 flex justify-between items-center h-24 fixed w-full px-10 bg-primary ">
+    <div className="z-10 flex justify-between items-center h-24 fixed w-full px-10 bg-primary dark:bg-newBlack ">
       <Link href="/">
         <a>
-          <h2 className="font-sans text-3xl text-white font-bold tracking-wider ">
+          <h2 className="font-sans text-3xl text-white font-bold tracking-wider  ">
             MarkNote
           </h2>
         </a>
@@ -39,7 +39,7 @@ const Header = () => {
       ) : (
         <Link href="/login">
           <a className={isActive("/login")}>
-            <span className="py-3 px-5 bg-secondary rounded-lg font-semibold cursor-pointer ">
+            <span className="py-3 px-5 bg-secondary rounded-lg font-semibold cursor-pointer   ">
               Login / Signup
             </span>
           </a>

@@ -2,7 +2,7 @@ import React from "react";
 import Yamde from "yamde";
 import { parseCookies } from "nookies";
 
-const Markdown = ({ text, isLightMode, setText, userEmail }) => {
+const Markdown = ({ text, setText, userEmail }) => {
   const { jwt } = parseCookies();
   const firstName = userEmail[0].firstName;
   const email = userEmail[0].user.email;
@@ -29,21 +29,30 @@ const Markdown = ({ text, isLightMode, setText, userEmail }) => {
   }
   return (
     <div
-      className={`relative prose m-auto ${
-        isLightMode ? "bg-white" : " bg-black"
-      }  p-5 rounded-lg`}
+      className="relative prose m-auto
+         bg-white dark:bg-nightBlue
+        p-5 rounded-lg mt-4 "
     >
       <span
-        className="absolute -bottom-5 right-1/2 h-20 w-20 p-2 flex justify-center items-center translate-x-8 font-mono bg-black text-5xl text-white font-bold rounded-full md:-top-5   "
+        className="absolute -bottom-5 right-1/2 h-20 w-20 p-2 flex justify-center items-center translate-x-8 rounded-full md:-top-10 cursor-pointer bg-newBlack dark:bg-black "
         onClick={submitNote}
       >
-        +
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-9 w-9 text-5xl text-white font-bold"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+          />
+        </svg>
       </span>
-      <Yamde
-        value={text}
-        handler={setText}
-        theme={isLightMode ? "light" : "dark"}
-      />
+      <Yamde value={text} handler={setText} />
     </div>
   );
 };

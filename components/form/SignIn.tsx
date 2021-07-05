@@ -643,7 +643,7 @@ const SignIn = ({ signup }) => {
           />
         </svg>
       </div>
-      <div className=" relative space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-custom1 md:bg-gray-50 md:rounded-lg">
+      <div className=" relative space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-card md:bg-gray-50 md:rounded-lg">
         <h2 className="font-sans text-4xl text-gray-900 font-extrabold uppercase ">
           Sign In
         </h2>

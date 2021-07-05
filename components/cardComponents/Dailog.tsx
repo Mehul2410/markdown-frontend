@@ -38,7 +38,7 @@ const Dailog = ({ card, note, id }) => {
         </i>
         <p
           onClick={openModal}
-          className="flex items-center bg-cardUpdate rounded-2xl text-gray-500  w-max px-4 py-1"
+          className="flex items-center bg-cardUpdate rounded-2xl text-gray-500  w-max px-4 py-1 cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -52,12 +52,12 @@ const Dailog = ({ card, note, id }) => {
         </p>
       </div>
       {isOpen ? (
-        <div className="flex top-0 left-0 right-0 justify-center items-center w-full h-full fixed bg-gray-600 bg-opacity-25 z-10">
+        <div className="flex top-0 left-0 right-0 justify-center items-center w-full h-full fixed z-10 backdrop-blur-sm">
           <div
             className="relative prose m-auto bg-white
         p-5 rounded-lg"
           >
-            <span className="space-x-5 absolute -bottom-4 origin-center translate-x-8	right-1/2 h-30 w-15 px-5 py-3 flex justify-center items-center text-white bg-black  rounded-lg">
+            <span className="space-x-5 absolute -bottom-4 origin-center translate-x-8	right-1/2 h-30 w-15 px-5 py-3 flex justify-center items-center text-white  rounded-lg md:-top-10 bg-newBlack dark:bg-blac">
               <button
                 type="button"
                 onClick={() => {
