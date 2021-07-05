@@ -41,8 +41,8 @@ const SignIn = ({ signup }) => {
   };
 
   return (
-    <div className="w-5/6 h-5/6 bg-custom1 rounded-lg m-auto drop-shadow-x grid grid-cols-2 ">
-      <div className="h-full rounded-l-lg bg-gray-100 flex justify-center items-center">
+    <div className="w-5/6 h-5/6 bg-custom1 rounded-lg m-auto drop-shadow-x grid grid-cols-2 md:grid-cols-1 ">
+      <div className="h-full rounded-l-lg bg-gray-100 flex justify-center items-center md:hidden">
         <svg
           className="object-contain w-10/12"
           width="600"
@@ -643,21 +643,21 @@ const SignIn = ({ signup }) => {
           />
         </svg>
       </div>
-      <div className="space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-custom1">
+      <div className=" relative space-y-3 h-full rounded-r-lg flex justify-center flex-col items-center bg-custom1 md:bg-gray-50 md:rounded-lg">
         <h2 className="font-sans text-4xl text-gray-900 font-extrabold uppercase ">
           Sign In
         </h2>
-        <p className="font-sans text-xl text-gray-300">
+        <p className="flex flex-wrap justify-center font-sans text-xl text-gray-300 md:text-gray-800">
           New here Create an Account?
           <span
-            className="text-black cursor-pointer underline"
+            className="text-black cursor-pointer underline ml-3 "
             onClick={signup}
           >
             Sign up
           </span>
         </p>
         <form
-          className="space-y-3 flex justify-center flex-col items-center"
+          className="space-y-3 flex justify-center flex-col items-center "
           onSubmit={(e) => SignInForm(e)}
         >
           <input

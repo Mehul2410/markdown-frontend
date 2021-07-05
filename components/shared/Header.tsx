@@ -20,7 +20,7 @@ const Header = () => {
   }
 
   return (
-    <div className="flex justify-between items-center h-24 fixed w-full px-10 bg-primary ">
+    <div className="z-10 flex justify-between items-center h-24 fixed w-full px-10 bg-primary ">
       <Link href="/">
         <a>
           <h2 className="font-sans text-3xl text-white font-bold tracking-wider ">
