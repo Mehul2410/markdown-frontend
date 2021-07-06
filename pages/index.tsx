@@ -5,7 +5,6 @@ import Cards from "../components/Card/Cards";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 import Markdown from "../components/markdown/Markdown";
-import Toggle from "../context/Toggle";
 import { API_URL } from "../config";
 
 const index = ({ user, notes }) => {
@@ -14,7 +13,6 @@ const index = ({ user, notes }) => {
   return (
     <BaseLayout>
       <BasePage>
-        <Toggle />
         <Markdown text={text} setText={setText} userEmail={user} />
         <Cards note={notes} />
       </BasePage>
@@ -54,15 +52,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     });
     notesResponse = await notes.json();
-    if (notesResponse) {
-      notesResponse.forEach((element) => {
-        element.share.map((item) => {
-          if (item === userResponse[0].user.email) {
-            authenticateduser.push(element);
-          }
-        });
+    notesResponse.forEach((element) => {
+      element.share.map((item) => {
+        if (item === userResponse[0].user.email) {
+          authenticateduser.push(element);
+        }
       });
-    }
+    });
   }
   return {
     props: {
