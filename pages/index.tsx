@@ -6,10 +6,11 @@ import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 import Markdown from "../components/markdown/Markdown";
 import Toggle from "../context/Toggle";
+import { API_URL } from "../config";
 
 const index = ({ user, notes }) => {
-  const [isLightMode, setIsLightMode] = React.useState(true);
   const [text, setText] = React.useState("");
+
   return (
     <BaseLayout>
       <BasePage>
@@ -35,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     });
     res.end();
   } else {
-    const user = await fetch("http://localhost:1337/profiles/me", {
+    const user = await fetch(`${API_URL}/profiles/me`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${jwt}`,
@@ -46,21 +47,22 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     // extract the token from the server size ctx
 
-    const notes = await fetch("http://localhost:1337/notes", {
+    const notes = await fetch(`${API_URL}/notes`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
     });
     notesResponse = await notes.json();
-    console.log(notesResponse);
-    notesResponse.forEach((element) => {
-      element.share.map((item) => {
-        if (item === userResponse[0].user.email) {
-          authenticateduser.push(element);
-        }
+    if (notesResponse) {
+      notesResponse.forEach((element) => {
+        element.share.map((item) => {
+          if (item === userResponse[0].user.email) {
+            authenticateduser.push(element);
+          }
+        });
       });
-    });
+    }
   }
   return {
     props: {

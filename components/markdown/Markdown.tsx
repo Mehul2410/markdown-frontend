@@ -1,6 +1,7 @@
 import React from "react";
 import Yamde from "yamde";
 import { parseCookies } from "nookies";
+import { API_URL } from "../../config";
 
 const Markdown = ({ text, setText, userEmail }) => {
   const { jwt } = parseCookies();
@@ -13,7 +14,7 @@ const Markdown = ({ text, setText, userEmail }) => {
   };
   async function submitNote() {
     try {
-      const sendNote = await fetch("http://localhost:1337/notes", {
+      const sendNote = await fetch(`${API_URL}/notes`, {
         method: "POST",
         body: JSON.stringify(noteBody),
         headers: {
@@ -24,7 +25,7 @@ const Markdown = ({ text, setText, userEmail }) => {
         location.reload();
       });
     } catch (error) {
-      console.log("something went wrong");
+      console.error("something went wrong");
     }
   }
   return (

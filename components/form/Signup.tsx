@@ -1,4 +1,5 @@
 import React from "react";
+import { API_URL } from "../../config";
 
 const Signup = ({ signIn }) => {
   const [email, setEmail] = React.useState<string | number>("");
@@ -18,20 +19,17 @@ const Signup = ({ signIn }) => {
       LastName: "",
     };
     try {
-      const response = await fetch(
-        "http://localhost:1337/auth/local/register",
-        {
-          method: "POST",
-          headers: {
-            Accept: "*/*",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(signUpInfo),
-        }
-      );
+      const response = await fetch(`${API_URL}/auth/local/register`, {
+        method: "POST",
+        headers: {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signUpInfo),
+      });
       const SignUpresponse = await response.json();
       if (SignUpresponse.jwt) {
-        await fetch("http://localhost:1337/profiles/me", {
+        await fetch(`${API_URL}/profiles/me`, {
           method: "POST",
           headers: {
             Accept: "*/*",

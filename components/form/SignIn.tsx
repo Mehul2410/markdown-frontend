@@ -1,6 +1,7 @@
 import React from "react";
 import { setCookie } from "nookies";
 import Router from "next/router";
+import { API_URL } from "../../config";
 
 const SignIn = ({ signup }) => {
   const [email, setEmail] = React.useState<string | number>("");
@@ -14,7 +15,7 @@ const SignIn = ({ signup }) => {
       password: password,
     };
     try {
-      const response = await fetch("http://localhost:1337/auth/local", {
+      const response = await fetch(`${API_URL}/auth/local`, {
         method: "POST",
         headers: {
           Accept: "*/*",

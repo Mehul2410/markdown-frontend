@@ -2,6 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import Dailog from "./cardComponents/Dailog";
 import Share from "./cardComponents/Share";
+import Delete from "./cardComponents/Delete";
 
 const Cards = ({ note }) => {
   return (
@@ -35,7 +36,10 @@ const Cards = ({ note }) => {
                         {card.author}
                       </p>
                     </div>
-                    <Share share={card.share} id={card.id} />
+                    <div className="flex items-center">
+                      <Delete id={card.id} />
+                      <Share share={card.share} id={card.id} />
+                    </div>
                   </div>
                   <ReactMarkdown className="prose h-3/4 overflow-scroll scrollbar-hide bg-gray-200 rounded-md p-5 my-3">
                     {card.notes}

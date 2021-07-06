@@ -1,6 +1,7 @@
 import React from "react";
 import { Disclosure } from "@headlessui/react";
 import { parseCookies } from "nookies";
+import { API_URL } from "../../../config";
 
 const Share = ({ share, id }) => {
   const { jwt } = parseCookies();
@@ -10,19 +11,15 @@ const Share = ({ share, id }) => {
     e.preventDefault();
     let shareArray = [];
     share.forEach((element: string) => {
-      // if (element !== sharedUser) {
-      //   console.log("try again");
-      // } else {
       shareArray.push(element, sharedUser);
       setSharedUser("");
       // }
     });
-    console.log(shareArray);
     const SharedUser = {
       share: shareArray,
     };
 
-    const updateSharedUser = await fetch(`http://localhost:1337/notes/${id}`, {
+    const updateSharedUser = await fetch(`${API_URL}/notes/${id}`, {
       method: "PUT",
       body: JSON.stringify(SharedUser),
       headers: {

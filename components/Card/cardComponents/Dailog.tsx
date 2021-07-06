@@ -2,6 +2,7 @@ import React from "react";
 import Yamde from "yamde";
 import { parseCookies } from "nookies";
 import router from "next/router";
+import { API_URL } from "../../../config";
 
 const Dailog = ({ card, note, id }) => {
   let [isOpen, setIsOpen] = React.useState(false);
@@ -13,14 +14,13 @@ const Dailog = ({ card, note, id }) => {
 
   function openModal() {
     setIsOpen(true);
-    console.log(id);
   }
 
   const updatedNote = {
     notes: text,
   };
   async function updateNote() {
-    const sendNote = await fetch(`http://localhost:1337/notes/${id}`, {
+    const sendNote = await fetch(`${API_URL}/notes/${id}`, {
       method: "PUT",
       body: JSON.stringify(updatedNote),
       headers: {
