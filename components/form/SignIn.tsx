@@ -10,34 +10,38 @@ const SignIn = ({ signup }) => {
 
   const SignInForm = async (e) => {
     e.preventDefault();
-    const signInInfo = {
-      identifier: email,
-      password: password,
-    };
-    try {
-      const response = await fetch(`${API_URL}/auth/local`, {
-        method: "POST",
-        headers: {
-          Accept: "*/*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signInInfo),
-      });
-      const loginresponse = await response.json();
-      if (loginresponse.jwt == undefined) {
-        setError("You have entered invalid email or password");
-      } else {
-        setCookie(null, "jwt", loginresponse.jwt, {
-          maxAge: 30 * 24 * 60 * 60,
-          path: "/",
+    if (password.length >= 6) {
+      const signInInfo = {
+        identifier: email,
+        password: password,
+      };
+      try {
+        const response = await fetch(`${API_URL}/auth/local`, {
+          method: "POST",
+          headers: {
+            Accept: "*/*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(signInInfo),
         });
-        Router.push("/");
-        setEmail("");
+        const loginresponse = await response.json();
+        if (loginresponse.jwt == undefined) {
+          setError("You have entered invalid email or password");
+        } else {
+          setCookie(null, "jwt", loginresponse.jwt, {
+            maxAge: 30 * 24 * 60 * 60,
+            path: "/",
+          });
+          Router.push("/");
+          setEmail("");
+          setPassword("");
+        }
+      } catch (err) {
         setPassword("");
+        setError("Something went wrong try again");
       }
-    } catch (err) {
-      setPassword("");
-      setError("Something went wrong try again");
+    } else {
+      setError("You have entered Incorret password");
     }
   };
 
@@ -680,6 +684,7 @@ const SignIn = ({ signup }) => {
             id="password"
             className="w-full"
             placeholder="Password"
+            maxLength="8"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

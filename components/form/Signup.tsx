@@ -3,47 +3,51 @@ import { API_URL } from "../../config";
 
 const Signup = ({ signIn }) => {
   const [email, setEmail] = React.useState<string | number>("");
-  const [password, setPassword] = React.useState<string | number>("");
+  const [password, setPassword] = React.useState<string>("");
   const [username, setUsername] = React.useState<string | number>("");
   const [error, setError] = React.useState("");
 
   const SignUpForm = async (e) => {
     e.preventDefault();
-    const signUpInfo = {
-      username: username,
-      email: email,
-      password: password,
-    };
-    const profile = {
-      firstName: username,
-      LastName: "",
-    };
-    try {
-      const response = await fetch(`${API_URL}/auth/local/register`, {
-        method: "POST",
-        headers: {
-          Accept: "*/*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signUpInfo),
-      });
-      const SignUpresponse = await response.json();
-      if (SignUpresponse.jwt) {
-        await fetch(`${API_URL}/profiles/me`, {
+    if (password.length >= 6) {
+      const signUpInfo = {
+        username: username,
+        email: email,
+        password: password,
+      };
+      const profile = {
+        firstName: username,
+        LastName: "",
+      };
+      try {
+        const response = await fetch(`${API_URL}/auth/local/register`, {
           method: "POST",
           headers: {
             Accept: "*/*",
             "Content-Type": "application/json",
-            Authorization: `Bearer ${SignUpresponse.jwt}`,
           },
-          body: JSON.stringify(profile),
+          body: JSON.stringify(signUpInfo),
         });
-        signIn();
-      } else {
-        setError("Something went wrong try sign up again");
+        const SignUpresponse = await response.json();
+        if (SignUpresponse.jwt) {
+          await fetch(`${API_URL}/profiles/me`, {
+            method: "POST",
+            headers: {
+              Accept: "*/*",
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${SignUpresponse.jwt}`,
+            },
+            body: JSON.stringify(profile),
+          });
+          signIn();
+        } else {
+          setError("Something went wrong try sign up again");
+        }
+      } catch (err) {
+        setError("Username or Email is already taken");
       }
-    } catch (err) {
-      setError("Username or Email is already taken");
+    } else {
+      setError("You have entered password less than 6 characters ");
     }
   };
 
@@ -422,6 +426,7 @@ const Signup = ({ signIn }) => {
             name="password"
             id="password"
             className="w-full"
+            max="8"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

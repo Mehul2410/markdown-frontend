@@ -9,7 +9,7 @@ import { API_URL } from "../config";
 
 const index = ({ user, notes }) => {
   const [text, setText] = React.useState("");
-
+  console.log(notes);
   return (
     <BaseLayout>
       <BasePage>
