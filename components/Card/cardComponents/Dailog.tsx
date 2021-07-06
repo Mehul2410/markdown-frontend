@@ -13,7 +13,7 @@ const Dailog = ({ card, note, id }) => {
   }
 
   function openModal() {
-    setIsOpen(true);
+    setIsOpen(!isOpen);
   }
 
   const updatedNote = {
@@ -28,13 +28,13 @@ const Dailog = ({ card, note, id }) => {
         "Content-Type": "application/json",
       },
     });
-    router.reload();
+    location.reload();
   }
   return (
     <>
       <div className="flex flex-wrap flex-row justify-between items-center">
         <i className="px-4 py-1 bg-cardUpdate rounded-2xl text-gray-500 text-xs w-max">
-          {card.updated_at.slice(0, 10)}
+          {card.updatedAt.slice(0, 10)}
         </i>
         <p
           onClick={openModal}
