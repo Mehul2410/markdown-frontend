@@ -16,7 +16,7 @@ const getInitialTheme = () => {
 export const ThemeContext = React.createContext();
 
 export const ThemeProvider = ({ initialTheme, children }) => {
-  const [theme, setTheme] = React.useState<string>(getInitialTheme);
+  const [theme, setTheme] = React.useState(getInitialTheme);
 
   const checkTheme = (existing) => {
     const root = window.document.documentElement;

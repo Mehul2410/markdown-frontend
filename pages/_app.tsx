@@ -3,7 +3,7 @@ import { ThemeProvider } from "../context/themeTemplate";
 
 function App({ Component, pageProps }: any) {
   return (
-    <ThemeProvider>
+    <ThemeProvider initialTheme="light">
       <Component {...pageProps} />
     </ThemeProvider>
   );
