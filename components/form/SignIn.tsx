@@ -684,7 +684,6 @@ const SignIn = ({ signup }) => {
             id="password"
             className="w-full"
             placeholder="Password"
-            maxLength="8"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

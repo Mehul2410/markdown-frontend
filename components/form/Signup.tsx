@@ -426,7 +426,6 @@ const Signup = ({ signIn }) => {
             name="password"
             id="password"
             className="w-full"
-            max="8"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
